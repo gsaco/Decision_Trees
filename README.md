@@ -175,87 +175,6 @@ graph LR
 
 ---
 
-## 📊 Results
-
-### 🏆 Classification Performance
-
-<table>
-<tr>
-<td align="center"><b>Metric</b></td>
-<td align="center"><b>Value</b></td>
-<td align="center"><b>95% CI</b></td>
-</tr>
-<tr>
-<td><b>Overall Accuracy</b></td>
-<td><code>78.65%</code></td>
-<td>68.69% - 86.63%</td>
-</tr>
-<tr>
-<td><b>Sensitivity</b></td>
-<td><code>70.83%</code></td>
-<td>-</td>
-</tr>
-<tr>
-<td><b>Specificity</b></td>
-<td><code>87.80%</code></td>
-<td>-</td>
-</tr>
-<tr>
-<td><b>PPV</b></td>
-<td><code>87.18%</code></td>
-<td>-</td>
-</tr>
-<tr>
-<td><b>Kappa</b></td>
-<td><code>0.5771</code></td>
-<td>-</td>
-</tr>
-<tr>
-<td><b>CV Accuracy</b></td>
-<td><code>80.77%</code></td>
-<td>-</td>
-</tr>
-</table>
-
-**Optimal Complexity Parameter (α):** `0.0001643517`
-
-### 🎯 Causal Inference Results
-
-<table>
-<tr>
-<td align="center"><b>Statistic</b></td>
-<td align="center"><b>Value</b></td>
-</tr>
-<tr>
-<td><b>Mean CATE</b></td>
-<td><code>26.68</code></td>
-</tr>
-<tr>
-<td><b>Min CATE</b></td>
-<td><code>20.00</code></td>
-</tr>
-<tr>
-<td><b>Max CATE</b></td>
-<td><code>32.16</code></td>
-</tr>
-<tr>
-<td><b>CATE Range</b></td>
-<td><code>12.16</code></td>
-</tr>
-<tr>
-<td><b>Effect Variation</b></td>
-<td><code>~60%</code></td>
-</tr>
-<tr>
-<td><b>Treatment Rate</b></td>
-<td><code>48.5%</code></td>
-</tr>
-</table>
-
-**Key Finding:** Treatment effects vary by 60% across patient subgroups, demonstrating significant heterogeneity and the value of personalized treatment strategies.
-
----
-
 
 ## 📊 Dataset
 
@@ -337,147 +256,6 @@ graph LR
 
 ---
 
-## 🚀 Installation
-
-### Option 1: Quick Setup (Conda - Recommended)
-
-```bash
-# Clone the repository
-git clone https://github.com/gsaco/Decision_Trees.git
-cd Decision_Trees
-
-# Create and activate conda environment with R
-conda create -n forest r-base=4.5.2 -c conda-forge -y
-conda activate forest
-
-# Install all required R packages
-conda install -c conda-forge \
-  r-rpart \
-  r-rpart.plot \
-  r-caret \
-  r-ggplot2 \
-  r-dplyr \
-  r-randomforest \
-  r-irkernel \
-  jupyter -y
-
-# Register R kernel for Jupyter
-R -e "IRkernel::installspec(name = 'forest-r', displayname = 'R (forest)')"
-```
-
-### Option 2: Manual R Installation
-
-```r
-# Install packages in R
-install.packages(c(
-  "rpart",
-  "rpart.plot",
-  "caret",
-  "ggplot2",
-  "dplyr",
-  "randomForest",
-  "IRkernel"
-))
-
-# Register Jupyter kernel
-IRkernel::installspec(name = 'forest-r', displayname = 'R (forest)')
-```
-
-### Verify Installation
-
-```bash
-# Check R version
-R --version
-
-# List installed packages
-R -e "installed.packages()[c('rpart', 'rpart.plot', 'caret', 'ggplot2', 'dplyr', 'randomForest'), c('Package', 'Version')]"
-
-# Verify Jupyter kernel
-jupyter kernelspec list
-```
-
----
-
-## 💻 Usage
-
-### Running Classification Tree Analysis
-
-```bash
-# Navigate to the R scripts directory
-cd R/scripts
-
-# Launch Jupyter Notebook
-jupyter notebook assignment4_part1_classification_tree.ipynb
-```
-
-**In Jupyter:**
-1. Select kernel: **R (forest)**
-2. Run cells sequentially (Cell → Run All)
-3. Outputs saved to `R/output/`
-
-**Expected Runtime:** ~2-3 minutes
-
-### Running Causal Forest Analysis
-
-```bash
-# Navigate to the R scripts directory
-cd R/scripts
-
-# Launch Jupyter Notebook
-jupyter notebook assignment4_part2_causal_forest.ipynb
-```
-
-**In Jupyter:**
-1. Select kernel: **R (forest)**
-2. Run cells sequentially (Cell → Run All)
-3. Outputs saved to `R/output/`
-
-**Expected Runtime:** ~3-5 minutes
-
-### Output Files
-
-After successful execution, find generated visualizations in:
-- `R/output/` - All R-generated plots and analysis results
-- `Python/output/` - All Python-generated plots and analysis results
-
----
-
-
-## 🔍 Key Findings
-
-### Classification Tree Analysis
-
-#### Performance Summary
-
-Our classification tree model demonstrates **strong predictive performance** for heart disease diagnosis:
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  MODEL PERFORMANCE METRICS                                      │
-├─────────────────────────────────────────────────────────────────┤
-│  Overall Accuracy:        78.65%  [95% CI: 68.69% - 86.63%]   │
-│  Sensitivity (Recall):    70.83%  (True Negative Rate)         │
-│  Specificity:             87.80%  (True Positive Rate)         │
-│  Positive Predictive Value: 87.18%                             │
-│  Balanced Accuracy:       79.32%                               │
-│  Kappa Statistic:         0.5771  (Moderate Agreement)         │
-├─────────────────────────────────────────────────────────────────┤
-│  CROSS-VALIDATION RESULTS                                       │
-├─────────────────────────────────────────────────────────────────┤
-│  4-Fold CV Accuracy:      80.77%                               │
-│  Optimal Alpha (cp):      0.0001643517                         │
-│  Alpha Search Range:      4.54e-05 to 0.05 (50 values)        │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-#### Clinical Insights
-
-- ✅ **High Specificity (87.80%):** Excellent at identifying true heart disease cases
-- ✅ **Good Sensitivity (70.83%):** Effective at ruling out disease in healthy patients
-- ✅ **Low False Negatives (5):** Minimizes missing actual disease cases
-- ✅ **Balanced Performance:** Strong results across both disease and non-disease classes
-- ✅ **Generalization:** CV accuracy (80.77%) validates model robustness
-
 #### Model Interpretation
 
 The pruning analysis revealed that the **optimal tree complexity** balances bias and variance:
@@ -486,86 +264,30 @@ The pruning analysis revealed that the **optimal tree complexity** balances bias
 - Cross-validation confirmed appropriate model complexity
 - No evidence of severe overfitting
 
----
-
-### Causal Forest Analysis
-
-#### Treatment Effect Heterogeneity
-
-Our causal forest identified **significant variation** in treatment effects across patient subgroups:
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  CONDITIONAL AVERAGE TREATMENT EFFECT (CATE) DISTRIBUTION      │
-├─────────────────────────────────────────────────────────────────┤
-│  Mean CATE:              26.68                                 │
-│  Minimum CATE:           20.00  (Low responders)               │
-│  Maximum CATE:           32.16  (High responders)              │
-│  CATE Range:             12.16  (60% variation)                │
-│  Standard Deviation:     ~2.5                                  │
-├─────────────────────────────────────────────────────────────────┤
-│  TERCILE STRATIFICATION (n=99 each)                            │
-├─────────────────────────────────────────────────────────────────┤
-│  Low Tercile:            20.00 - 24.79                         │
-│  Medium Tercile:         24.79 - 28.68                         │
-│  High Tercile:           28.68 - 32.16                         │
-├─────────────────────────────────────────────────────────────────┤
-│  TREATMENT DISTRIBUTION                                         │
-├─────────────────────────────────────────────────────────────────┤
-│  Treated:                144 patients (48.5%)                  │
-│  Control:                153 patients (51.5%)                  │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-#### Personalized Medicine Insights
-
-The **60% variation** in treatment effects reveals:
-
-1. **Patient Stratification Matters:** Not all patients benefit equally from treatment
-2. **Identifiable Subgroups:** Specific patient characteristics predict treatment response
-3. **Clinical Decision Support:** The model can guide personalized treatment allocation
-4. **Resource Optimization:** Target treatment to high-responder groups for maximum benefit
-
-#### Feature Importance Findings
-
-The causal forest analysis identified **key predictors** of treatment heterogeneity:
-- Patient baseline characteristics significantly influence treatment response
-- Certain covariates show strong association with CATE terciles
-- Feature importance ranking guides clinical attention to relevant factors
 
 ---
 
-## Clinical Implications
+## 👥 Contributors
 
-1. **Risk Stratification:** The classification model can assist in identifying patients at high risk for heart disease
-2. **Personalized Medicine:** The causal forest identifies which patients are most likely to benefit from specific treatments
-3. **Resource Optimization:** Treatment can be targeted to patients with the highest expected benefit
-4. **Decision Support:** Both models provide interpretable insights for clinical decision-making
+**Group 1 - Causal Inference and Machine Learning**
 
-## Limitations
+This project represents a collaborative effort in applying advanced statistical methods to personalized medicine.
 
-- Dataset size is relatively small (297 samples after cleaning)
-- Missing values reduced the available sample size
-- Treatment assignments in the causal analysis are observational, not randomized
-- Results should be validated on larger, independent datasets before clinical application
+---
 
-## Future Work
+## 📄 License
 
-- Validate models on external datasets
-- Incorporate additional clinical features
-- Explore ensemble methods for improved prediction
-- Conduct sensitivity analysis for causal estimates
-- Develop interactive clinical decision support tools
+This project is for **educational and research purposes only**.
 
-## Contributors
+⚠️ **Disclaimer:** This software is not intended for clinical use. Do not use for medical diagnosis or treatment decisions without proper validation and regulatory approval.
 
-Group 1 - Causal Inference and Machine Learning
 
-## License
+<div align="center">
 
-This project is for educational purposes.
+### ⭐ If you find this project useful, please consider giving it a star!
 
-## Acknowledgments
+Made with ❤️ by Group 1 - Causal Inference and Machine Learning
 
-- Cleveland Clinic Foundation for providing the heart disease dataset
-- UCI Machine Learning Repository for hosting the dataset
+**[↑ Back to Top](#-decision-trees-for-heart-disease-prediction-and-causal-inference)**
+
+</div>
