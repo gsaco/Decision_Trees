@@ -1,0 +1,16 @@
+# R dependencies for Decision Trees Assignment 4
+# Decision trees and random forests
+rpart
+rpart.plot
+randomForest
+
+# Machine learning utilities
+caret
+
+# Data manipulation
+dplyr
+tidyr
+reshape2
+
+# Visualization
+ggplot2
